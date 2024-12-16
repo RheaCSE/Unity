@@ -1,0 +1,22 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
+
+public class SceneSwitcher : MonoBehaviour
+{
+    public string mainSceneName = "MainScene"; 
+    void OnEnable()
+    {
+        // Get the root visual element of the UI Document
+        var rootVisualElement = GetComponent<UIDocument>().rootVisualElement;
+        var backToGameButton = rootVisualElement.Q<Button>("backToGameButton");
+
+        // Add the click event handler to the button
+        backToGameButton.clicked += OnBackToGameClicked;
+    }
+
+    private void OnBackToGameClicked()
+    {
+        SceneManager.LoadScene(mainSceneName);
+    }
+}
